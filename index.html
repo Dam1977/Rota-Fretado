@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RotaFretado - Google Maps Caieiras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra Lateral -->
+        <aside class="sidebar">
+            <header>
+                <h1>🚌 RotaFretado</h1>
+                <p>Mapeamento de embarque e rotas no Google Maps</p>
+            </header>
+
+            <!-- Formulário para Novos Pontos -->
+            <form id="form-endereco" class="card">
+                <h2>Adicionar Novo Ponto</h2>
+                
+                <div class="input-group">
+                    <label for="embarque">Ponto de Embarque</label>
+                    <input type="text" id="embarque" placeholder="Ex: Caieiras via Francisco Morato" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="linha">Linha / Terminal</label>
+                    <input type="text" id="linha" placeholder="Ex: L1 / T1" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="endereco">Endereço Completo</label>
+                    <input type="text" id="endereco" placeholder="Ex: Av. Professor Carvalho Pinto, Caieiras" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="referencia">Referência</label>
+                    <input type="text" id="referencia" placeholder="Ex: Estação de Caieiras" required>
+                </div>
+
+                <button type="submit" id="btn-adicionar">Mapear e Mostrar no Google Maps</button>
+                <p id="status-msg" class="status"></p>
+            </form>
+
+            <!-- Filtros, Busca e Lista de Pontos -->
+            <div class="lista-container">
+                <div class="lista-header">
+                    <h2>Pontos (<span id="contador">0</span>)</h2>
+                    <div class="filtros-grupo">
+                        <select id="modo-transporte" title="Como você vai até o ponto?">
+                            <option value="walking">🚶 A pé</option>
+                            <option value="transit">🚌 Transporte Público</option>
+                            <option value="driving">🚗 Carro / App</option>
+                            <option value="">🗺️ Escolher no Maps</option>
+                        </select>
+
+                        <select id="filtro-terminal" title="Filtrar por Terminal">
+                            <option value="TODOS">Todos Terminais</option>
+                            <option value="T1">Terminal T1</option>
+                            <option value="T2">Terminal T2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Barra de Pesquisa por Texto -->
+                <div class="busca-container">
+                    <input 
+                        type="text" 
+                        id="campo-busca" 
+                        placeholder="🔍 Pesquisar rua, linha ou referência..."
+                        autocomplete="off"
+                    >
+                    <button type="button" id="btn-limpar-busca" title="Limpar busca" style="display: none;">✕</button>
+                </div>
+
+                <ul id="lista-pontos"></ul>
+            </div>
+        </aside>
+
+        <!-- Área do Google Maps Embutido -->
+        <main class="map-area">
+            <div class="map-barra-topo">
+                <span id="mapa-titulo">Visualizando: Estação de Caieiras</span>
+                <a id="btn-abrir-externo" href="https://google.com" target="_self"> 
+                    🧭 Traçar Rota da Minha Localização
+                </a>
+            </div>
+            <iframe 
+                id="google-map-frame"
+                src="https://google.com"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
